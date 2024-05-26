@@ -1,0 +1,77 @@
+Input: Example 1
+
+query MyQuery {
+  getAnimalClassSummary {
+    items {
+      class_number
+      class_type
+      number_of_animals
+    }
+  }
+}
+
+Output: 
+
+{
+  "data": {
+    "getAnimalClassSummary": {
+      "items": [
+        {
+          "class_number": 2,
+          "class_type": "Bird",
+          "number_of_animals": 2
+        },
+        {
+          "class_number": 4,
+          "class_type": "Fish",
+          "number_of_animals": 5
+        },
+        {
+          "class_number": 1,
+          "class_type": "Mammal",
+          "number_of_animals": 9
+        },
+        {
+          "class_number": 7,
+          "class_type": "Invertebrate",
+          "number_of_animals": 3
+        }
+      ]
+    }
+  }
+}
+
+Input:  Example 2
+query MyQuery {
+  getAnimalClassSummary {
+    items {
+      class_number
+      number_of_animals
+    }
+  }
+}
+
+{
+  "data": {
+    "getAnimalClassSummary": {
+      "items": [
+        {
+          "class_number": 2,
+          "number_of_animals": 2
+        },
+        {
+          "class_number": 4,
+          "number_of_animals": 5
+        },
+        {
+          "class_number": 1,
+          "number_of_animals": 9
+        },
+        {
+          "class_number": 7,
+          "number_of_animals": 3
+        }
+      ]
+    }
+  }
+}

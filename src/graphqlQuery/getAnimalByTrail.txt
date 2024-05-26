@@ -1,0 +1,78 @@
+
+
+The query MyQuery is requesting a list of animals that meet the criteria of having a class_number of 1 and being on the "Domestic" trail. For each animal that meets these criteria, it asks for their name (animal_name) and class type (class_type).
+
+Input: getAnimalByTrail
+query MyQuery {
+    getAnimalByTrail(filter: {class_number: 1, trail: "Domestic"}) {
+      items {
+        animal_name
+        class_type
+      }
+    }
+  }
+
+  Output:
+
+  {
+  "data": {
+    "getAnimalByTrail": {
+      "items": [
+        {
+          "animal_name": "calf",
+          "class_type": "Mammal"
+        },
+        {
+          "animal_name": "cavy",
+          "class_type": "Mammal"
+        }
+      ]
+    }
+  }
+}
+
+Input: With all filter
+
+query MyQuery {
+  getAnimalByTrail(filter: {class_number: 4}) {
+    items {
+      animal_name
+      class_type
+    }
+  }
+}
+
+Output:
+
+{
+  "data": {
+    "getAnimalByTrail": {
+      "items": [
+        {
+          "animal_name": "dogfish",
+          "class_type": "Fish"
+        },
+        {
+          "animal_name": "carp",
+          "class_type": "Fish"
+        },
+        {
+          "animal_name": "chub",
+          "class_type": "Fish"
+        },
+        {
+          "animal_name": "catfish",
+          "class_type": "Fish"
+        },
+        {
+          "animal_name": "bass",
+          "class_type": "Fish"
+        }
+      ]
+    }
+  }
+}
+
+
+  
+  
