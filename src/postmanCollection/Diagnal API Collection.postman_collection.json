@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "6a874be1-6a39-418f-81c1-6afef331079d",
+		"name": "Diagnal API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14297989"
+	},
+	"item": [
+		{
+			"name": "getAnimalClassSummary",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "da2-qtzx5bkdlzawnbuj6hptwwnyne"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query MyQuery {\r\n  getAnimalClassSummary {\r\n    items {\r\n      class_number\r\n      class_type\r\n      number_of_animals\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://nwfgratsbrb4vekqftaotsvy7a.appsync-api.ap-south-1.amazonaws.com/graphql",
+					"protocol": "https",
+					"host": [
+						"nwfgratsbrb4vekqftaotsvy7a",
+						"appsync-api",
+						"ap-south-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAnimalByTrail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "da2-qtzx5bkdlzawnbuj6hptwwnyne"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query MyQuery {\r\n  getAnimalByTrail(filter: {class_number: 2, trail: \"Domestic\"}) {\r\n    items {\r\n      animal_name\r\n      class_type\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://nwfgratsbrb4vekqftaotsvy7a.appsync-api.ap-south-1.amazonaws.com/graphql",
+					"protocol": "https",
+					"host": [
+						"nwfgratsbrb4vekqftaotsvy7a",
+						"appsync-api",
+						"ap-south-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gets3PresignedURLtoUploadFile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "da2-qtzx5bkdlzawnbuj6hptwwnyne"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query MyQuery {\r\n  gets3PresignedURLtoUploadFile(path: \"animals.csv\") {\r\n    path\r\n    uploadURL\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://nwfgratsbrb4vekqftaotsvy7a.appsync-api.ap-south-1.amazonaws.com/graphql",
+					"protocol": "https",
+					"host": [
+						"nwfgratsbrb4vekqftaotsvy7a",
+						"appsync-api",
+						"ap-south-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload file to s3 using presigned url",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"type": "file",
+							"src": "/C:/Users/DELL/Downloads/Diagnal - Backend Workshop/Diagnal - Backend Workshop v4/animals.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://diagnal-data.s3.ap-south-1.amazonaws.com/animals.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6GBMFFL4KCUP5DVI%2F20240526%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240526T190858Z&X-Amz-Expires=60&X-Amz-Signature=68abc83ae5b5013fa5f3204ab2cbd8256c28e1816d2ebe797c404fe6139e7717&X-Amz-SignedHeaders=host",
+					"protocol": "https",
+					"host": [
+						"diagnal-data",
+						"s3",
+						"ap-south-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"animals.csv"
+					],
+					"query": [
+						{
+							"key": "X-Amz-Algorithm",
+							"value": "AWS4-HMAC-SHA256"
+						},
+						{
+							"key": "X-Amz-Credential",
+							"value": "AKIA6GBMFFL4KCUP5DVI%2F20240526%2Fap-south-1%2Fs3%2Faws4_request"
+						},
+						{
+							"key": "X-Amz-Date",
+							"value": "20240526T190858Z"
+						},
+						{
+							"key": "X-Amz-Expires",
+							"value": "60"
+						},
+						{
+							"key": "X-Amz-Signature",
+							"value": "68abc83ae5b5013fa5f3204ab2cbd8256c28e1816d2ebe797c404fe6139e7717"
+						},
+						{
+							"key": "X-Amz-SignedHeaders",
+							"value": "host"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
