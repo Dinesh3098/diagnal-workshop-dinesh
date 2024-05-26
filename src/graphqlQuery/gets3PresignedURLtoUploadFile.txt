@@ -1,0 +1,18 @@
+Input:  
+query MyQuery {
+  gets3PresignedURLtoUploadFile(path: "animals.csv") {
+    path
+    uploadURL
+  }
+}
+
+Output:
+
+{
+  "data": {
+    "gets3PresignedURLtoUploadFile": {
+      "path": "animals.csv",
+      "uploadURL": "https://diagnal-data.s3.ap-south-1.amazonaws.com/animals.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6GBMFFL4KCUP5DVI%2F20240526%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240526T173500Z&X-Amz-Expires=60&X-Amz-Signature=4fabbddd4695cdacda7f685955943c3741bedaa0acd5eaf2b3ab8cd475a56d8a&X-Amz-SignedHeaders=host"
+    }
+  }
+}
