@@ -107,5 +107,190 @@ Step 4: Setting Up AWS AppSync with GraphQL
 - Click "Attach Resolver" for the getAnimalData query and attach it to the GetAnimalDataUsingGraphql Lambda function.
 - Click "Attach Resolver" for the generateUploadURL query and attach it to the Returns3PresignedURLtoUploadFile Lambda function.
 
+# API with result and example
+
+1. getAnimalByTrail API
+```
+Input: getAnimalByTrail
+
+query MyQuery {
+    getAnimalByTrail(filter: {class_number: 1, trail: "Domestic"}) {
+      items {
+        animal_name
+        class_type
+      }
+    }
+  }
+
+Output:
+
+  {
+  "data": {
+    "getAnimalByTrail": {
+      "items": [
+        {
+          "animal_name": "calf",
+          "class_type": "Mammal"
+        },
+        {
+          "animal_name": "cavy",
+          "class_type": "Mammal"
+        }
+      ]
+    }
+  }
+}
+```
+- With all filter
+```
+Input: With all filter
+
+query MyQuery {
+  getAnimalByTrail(filter: {class_number: 4}) {
+    items {
+      animal_name
+      class_type
+    }
+  }
+}
+
+Output:
+
+{
+  "data": {
+    "getAnimalByTrail": {
+      "items": [
+        {
+          "animal_name": "dogfish",
+          "class_type": "Fish"
+        },
+        {
+          "animal_name": "carp",
+          "class_type": "Fish"
+        },
+        {
+          "animal_name": "chub",
+          "class_type": "Fish"
+        },
+        {
+          "animal_name": "catfish",
+          "class_type": "Fish"
+        },
+        {
+          "animal_name": "bass",
+          "class_type": "Fish"
+        }
+      ]
+    }
+  }
+}
+```
+2. getAnimalClassSummary
+
+```
+Input: Example 1
+
+query MyQuery {
+  getAnimalClassSummary {
+    items {
+      class_number
+      class_type
+      number_of_animals
+    }
+  }
+}
+
+Output: 
+
+{
+  "data": {
+    "getAnimalClassSummary": {
+      "items": [
+        {
+          "class_number": 2,
+          "class_type": "Bird",
+          "number_of_animals": 2
+        },
+        {
+          "class_number": 4,
+          "class_type": "Fish",
+          "number_of_animals": 5
+        },
+        {
+          "class_number": 1,
+          "class_type": "Mammal",
+          "number_of_animals": 9
+        },
+        {
+          "class_number": 7,
+          "class_type": "Invertebrate",
+          "number_of_animals": 3
+        }
+      ]
+    }
+  }
+}
+```
+```
+Input:  Example 2
+
+query MyQuery {
+  getAnimalClassSummary {
+    items {
+      class_number
+      number_of_animals
+    }
+  }
+}
+
+Output: 
+{
+  "data": {
+    "getAnimalClassSummary": {
+      "items": [
+        {
+          "class_number": 2,
+          "number_of_animals": 2
+        },
+        {
+          "class_number": 4,
+          "number_of_animals": 5
+        },
+        {
+          "class_number": 1,
+          "number_of_animals": 9
+        },
+        {
+          "class_number": 7,
+          "number_of_animals": 3
+        }
+      ]
+    }
+  }
+}
+```
+3. gets3PresignedURLtoUploadFile
+
+```
+Input:  
+query MyQuery {
+  gets3PresignedURLtoUploadFile(path: "animals.csv") {
+    path
+    uploadURL
+  }
+}
+
+Output:
+
+{
+  "data": {
+    "gets3PresignedURLtoUploadFile": {
+      "path": "animals.csv",
+      "uploadURL": "https://diagnal-data.s3.ap-south-1.amazonaws.com/animals.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIA6GBMFFL4KCUP5DVI%2F20240526%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20240526T173500Z&X-Amz-Expires=60&X-Amz-Signature=4fabbddd4695cdacda7f685955943c3741bedaa0acd5eaf2b3ab8cd475a56d8a&X-Amz-SignedHeaders=host"
+    }
+  }
+}
+```
+
 # Conclusion
 - This setup provides a comprehensive solution to manage animal data using AWS services. The system allows data to be fetched from an S3 bucket, saved to DynamoDB, and accessed or uploaded via a GraphQL API. Follow the instructions carefully to ensure each component is configured correctly for seamless operation.
